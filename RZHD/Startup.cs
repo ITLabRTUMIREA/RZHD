@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RZHD.Data;
+using Microsoft.EntityFrameworkCore;
+using RZHD.Models;
+using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace RZHD
 {
@@ -19,6 +24,33 @@ namespace RZHD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("Default");
+            services.AddEntityFrameworkNpgsql()
+                    .AddDbContext<DatabaseContext>(options =>
+                        options.UseNpgsql(connection));
+
+            services.AddIdentity<User, Role>(identityOptions =>
+            {
+                // configure identity options
+                identityOptions.Password.RequireDigit = false;
+                identityOptions.Password.RequireLowercase = false;
+                identityOptions.Password.RequireUppercase = false;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequiredLength = 6;
+
+                identityOptions.SignIn.RequireConfirmedEmail = false;
+
+                identityOptions.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.@+";
+
+                identityOptions.User.RequireUniqueEmail = true;
+
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(0);
+                identityOptions.Lockout.MaxFailedAccessAttempts = 100;
+            })
+                .AddEntityFrameworkStores<DatabaseContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory

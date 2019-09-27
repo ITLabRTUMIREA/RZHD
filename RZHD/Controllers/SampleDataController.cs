@@ -26,6 +26,12 @@ namespace RZHD.Controllers
             });
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Func()
+        {
+            return Content("Hello world");
+        }
+
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }
