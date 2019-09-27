@@ -9,6 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using RZHD.Models;
 using System;
 using Microsoft.AspNetCore.Identity;
+using RZHD.Models.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using RZHD.Services.Authorize;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace RZHD
 {
@@ -24,11 +30,46 @@ namespace RZHD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure options
+            services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
+
+            // JWT configuration
+            var jwtOptions = Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // do we need to validate publisher while token is validating
+                        ValidateIssuer = true,
+                        // publisher
+                        ValidIssuer = jwtOptions.Issuer,
+
+                        // do we need to validate consumer
+                        ValidateAudience = true,
+                        // setting consumer token
+                        ValidAudience = jwtOptions.Audience,
+                        // do we need to validate time of existence
+                        ValidateLifetime = true,
+
+                        // setting security key
+                        IssuerSigningKey = jwtOptions.SymmetricSecurityKey,
+                        // validation of security key
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+
+            // Add transients for interfaces
+            services.AddTransient<IJwtFactory, JwtFactory>();
+
+            // Configure database
             string connection = Configuration.GetConnectionString("Default");
             services.AddEntityFrameworkNpgsql()
                     .AddDbContext<DatabaseContext>(options =>
                         options.UseNpgsql(connection));
 
+            // Configure identity
             services.AddIdentity<User, Role>(identityOptions =>
             {
                 // configure identity options
@@ -51,7 +92,14 @@ namespace RZHD
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                     .RequireAuthenticatedUser()
+                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                     .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
