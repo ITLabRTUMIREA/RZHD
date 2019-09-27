@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SampleDataService } from '../api/services';
+import { WeatherForecast } from '../api/models';
 
 @Component({
   selector: 'app-fetch-data',
@@ -8,16 +10,19 @@ import { HttpClient } from '@angular/common/http';
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private service: SampleDataService) {
     http.get<WeatherForecast[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }
-}
 
-interface WeatherForecast {
-  dateFormatted: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  async ngOnInit() {
+    const result = await this.service.apiSampleDataWeatherForecastsGet$Json$Response().toPromise();
+    if (result.ok) {
+      this.forecasts = result.body;
+    }
+    else {
+      this.forecasts = [];
+    }
+  }
 }

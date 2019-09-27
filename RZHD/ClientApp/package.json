@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run generate && ng serve",
     "build": "ng build",
     "build:ssr": "ng run RZHD:server:dev",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "generate": "ng-openapi-gen -i http://localhost:5000/swagger/v1/swagger.json"
   },
   "private": true,
   "dependencies": {
@@ -48,7 +49,8 @@
     "karma-coverage-istanbul-reporter": "~1.4.2",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "ng-openapi-gen": "^0.6.0"
   },
   "optionalDependencies": {
     "node-sass": "^4.9.3",

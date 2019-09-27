@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using RZHD.Services.Authorize;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.OpenApi.Models;
 
 namespace RZHD
 {
@@ -101,6 +102,11 @@ namespace RZHD
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -119,6 +125,13 @@ namespace RZHD
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(cfg =>
+                cfg.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader());
+
+            app.UseSwagger();
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
