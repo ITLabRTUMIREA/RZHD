@@ -69,7 +69,6 @@ namespace RZHD.Controllers.Restaurants
 
                     foreach (var restaurant in st.DeliverRestaurants)
                     {
-                        // DAYS
                         // too late
                         if (train.ArriveTime < time)
                             continue;
@@ -83,7 +82,7 @@ namespace RZHD.Controllers.Restaurants
                         {
                             Id = restaurant.RestaurantId,
                             Name = (await context.Restaurants.Where(res => res.Id == restaurant.RestaurantId).SingleAsync()).Name,
-                            ImageUrl = "www.google.com",
+                            ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5kMyM1EuCX16-9wulZApxeFhIN4bfWkul1O1RD8K1aMfiPzw0",
                             StationTime = new List<StationTimeView>()
                         });
                         TimeSpan temp = train.ArriveTime - time;
