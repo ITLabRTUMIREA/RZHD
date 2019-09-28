@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace RZHD.Models
 {
-    public class StationTrain
+    public class StationTicket
     {
-        public DateTime ArriveTime { get; set; }
-
-        public int TrainId { get; set; }
-        public Train Train { get; set; }
+        public int TicketId { get; set; }
+        public Ticket Ticket { get; set; }
 
         public int StationId { get; set; }
         public Station Station { get; set; }

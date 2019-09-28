@@ -12,6 +12,6 @@ namespace RZHD.Models
         public DateTime DepartureTime { get; set; }
         public DateTime ArriveTime { get; set; }
 
-        public List<Station> Stations { get; set; }
+        public List<StationTicket> Stations { get; set; }
     }
 }

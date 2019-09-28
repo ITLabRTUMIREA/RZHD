@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RZHD.Data;
@@ -9,9 +10,10 @@ using RZHD.Data;
 namespace RZHD.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190928161653_trainuniquenumber")]
+    partial class trainuniquenumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,11 @@ namespace RZHD.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("TicketId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
 
                     b.ToTable("Stations");
                 });
@@ -160,19 +166,6 @@ namespace RZHD.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("StationRestaurants");
-                });
-
-            modelBuilder.Entity("RZHD.Models.StationTicket", b =>
-                {
-                    b.Property<int>("StationId");
-
-                    b.Property<int>("TicketId");
-
-                    b.HasKey("StationId", "TicketId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("StationTickets");
                 });
 
             modelBuilder.Entity("RZHD.Models.StationTrain", b =>
@@ -337,6 +330,13 @@ namespace RZHD.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("RZHD.Models.Station", b =>
+                {
+                    b.HasOne("RZHD.Models.Ticket")
+                        .WithMany("Stations")
+                        .HasForeignKey("TicketId");
+                });
+
             modelBuilder.Entity("RZHD.Models.StationRestaurant", b =>
                 {
                     b.HasOne("RZHD.Models.Restaurant", "Restaurant")
@@ -347,19 +347,6 @@ namespace RZHD.Migrations
                     b.HasOne("RZHD.Models.Station", "Station")
                         .WithMany("DeliverRestaurants")
                         .HasForeignKey("StationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RZHD.Models.StationTicket", b =>
-                {
-                    b.HasOne("RZHD.Models.Station", "Station")
-                        .WithMany("Tickets")
-                        .HasForeignKey("StationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("RZHD.Models.Ticket", "Ticket")
-                        .WithMany("Stations")
-                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

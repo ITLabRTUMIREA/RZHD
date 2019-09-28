@@ -16,10 +16,11 @@ namespace RZHD.Data
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Train> Trains { get; set; }
         public DbSet<StationTrain> StationTrains { get; set; }
+        public DbSet<StationTicket> StationTickets { get; set; }
+
 
         public DatabaseContext(DbContextOptions options) : base (options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,6 +33,23 @@ namespace RZHD.Data
             ConfigureTicket(builder);
             ConfigureTrain(builder);
             ConfigureStationTrain(builder);
+            ConfigureStationTicket(builder);
+        }
+
+        private void ConfigureStationTicket(ModelBuilder builder)
+        {
+            builder.Entity<StationTicket>()
+                .HasKey(stt => new { stt.StationId, stt.TicketId });
+
+            builder.Entity<StationTicket>()
+                .HasOne(stt => stt.Ticket)
+                .WithMany(t => t.Stations)
+                .HasForeignKey(stt => stt.TicketId);
+
+            builder.Entity<StationTicket>()
+                .HasOne(stt => stt.Station)
+                .WithMany(st => st.Tickets)
+                .HasForeignKey(stt => stt.StationId);
         }
 
         private void ConfigureStationTrain(ModelBuilder builder)
@@ -54,6 +72,13 @@ namespace RZHD.Data
         {
             builder.Entity<Train>()
                 .HasKey(tr => tr.Id);
+
+            builder.Entity<Train>()
+                .HasMany(t => t.Stations);
+
+            builder.Entity<Train>()
+                .HasIndex(t => t.Number)
+                .IsUnique();
         }
 
         private void ConfigureTicket(ModelBuilder builder)

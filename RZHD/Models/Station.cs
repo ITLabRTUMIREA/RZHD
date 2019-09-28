@@ -12,6 +12,8 @@ namespace RZHD.Models
 
         public List<StationRestaurant> DeliverRestaurants { get; set; }
 
-        public List<StationTrain> Trains{ get; set; }
+        public List<StationTrain> Trains { get; set; }
+
+        public List<StationTicket> Tickets { get; set; }
     }
 }

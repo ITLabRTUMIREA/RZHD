@@ -3,8 +3,12 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RZHD.Data;
+using RZHD.Models;
 using RZHD.Models.Responses.Restaurants;
+using RZHD.Models.Responses.Stations;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RZHD.Controllers.Restaurants
@@ -22,11 +26,84 @@ namespace RZHD.Controllers.Restaurants
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RestaurantView>>> Get()
+        public async Task<ActionResult<IEnumerable<RestaurantView>>> Get(string ticket)
         {
-            return Ok(await context.Restaurants
-                .ProjectTo<RestaurantView>(mapper.ConfigurationProvider)
-                .ToListAsync());
+            try
+            {
+                // ticket has all stations
+                var tick = await context.Tickets.Where(t => t.Number == ticket)
+                    .Include(t => t.Stations)
+                    .SingleAsync();
+
+                var time = DateTime.Now;
+
+                List<RestaurantView> result = new List<RestaurantView>();
+
+                foreach (var station in tick.Stations)
+                {
+                    // get all restaurants
+                    var st = await context.Stations.Where(s => s.Id == station.StationId)
+                        .Include(s => s.DeliverRestaurants)
+                        .Include(s => s.Trains)
+                        .SingleAsync();
+
+                    if (st.Trains.Count == 0)
+                        continue;
+
+
+                    // get all trains
+                    StationTrain train = null;
+                    foreach (var trai in st.Trains)
+                    {
+                        var temp = context.Trains.Where(tra => tra.Id == trai.TrainId).SingleAsync().Result;
+                        if (temp.Number == ticket)
+                        {
+                            trai.Train = temp;
+                            train = trai;
+                            break;
+                        }
+                    }
+
+                    if (train == null)
+                        continue;
+
+                    //foreach (var tr in st.Trains)
+                    //{
+                    //    if (tr.Train.Number != tick.Number)
+                    //        continue;
+
+                    //    train = tr;
+                    //    break;
+                    //}
+
+                    foreach (var restaurant in st.DeliverRestaurants)
+                    {
+                        // calculate time
+                        if (train.ArriveTime - time > restaurant.DeliverTime)
+                            continue;
+
+                        //result.Add(mapper.Map<RestaurantView>(restaurant.Restaurant));
+                        result.Add(new RestaurantView
+                        {
+                            Id = restaurant.RestaurantId,
+                            Name = (await context.Restaurants.Where(res => res.Id == restaurant.RestaurantId).SingleAsync()).Name,
+                            ImageUrl = "www.google.com",
+                            StationTime = new List<StationTimeView>()
+                        });
+                        result.Last().StationTime.Add(new StationTimeView
+                        {
+                            Station = mapper.Map<StationView>(st),
+                            Time = train.ArriveTime - time
+                        });
+                    }
+                }
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Something went wrong");
+            }
         }
     }
 }

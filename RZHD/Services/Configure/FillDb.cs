@@ -28,13 +28,13 @@ namespace RZHD.Services.Configure
         public async Task Configure()
         {
             await AddDefaultUser();
-            //await AddStations();
-            //await AddRestaurants();
-            //await AddTickets();
-            //await AddTrains();
+            await AddStations();
+            await AddRestaurants();
+            await AddTickets();
+            await AddTrains();
 
 
-            //await AddLinks();
+            await AddLinks();
         }
 
         private async Task AddTrains()
@@ -44,38 +44,50 @@ namespace RZHD.Services.Configure
 
             context.Trains.Add(new Train
             {
-                Number = "069ИА",
-                WagonsNumber = 13
+                Number = "num123",
+                WagonsNumber = 13,
+                ArriveTIme = new DateTime(2020, 1, 1, 0,0,0),
+                DepartureTime = new DateTime(2019,1,1,0,0,0)
             });
 
             context.Trains.Add(new Train
             {
-                Number = "070ИА",
-                WagonsNumber = 12
+                Number = "kjl120",
+                WagonsNumber = 12,
+                ArriveTIme = new DateTime(2020, 1, 1, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 0, 0)
             });
 
             context.Trains.Add(new Train
             {
-                Number = "065И",
-                WagonsNumber = 9
+                Number = "dfr780",
+                WagonsNumber = 9,
+                ArriveTIme = new DateTime(2020, 1, 1, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 0, 0)
             });
 
             context.Trains.Add(new Train
             {
-                Number = "066И",
-                WagonsNumber = 9
+                Number = "gtr945",
+                WagonsNumber = 9,
+                ArriveTIme = new DateTime(2020, 1, 1, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 0, 0)
             });
 
             context.Trains.Add(new Train
             {
-                Number = "099МК",
-                WagonsNumber = 13
+                Number = "dfdg80",
+                WagonsNumber = 13,
+                ArriveTIme = new DateTime(2020, 1, 1, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 0, 0)
             });
 
             context.Trains.Add(new Train
             {
-                Number = "100МК",
-                WagonsNumber = 12
+                Number = "gteq945",
+                WagonsNumber = 12,
+                ArriveTIme = new DateTime(2020, 1, 1, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 0, 0)
             });
 
             await context.SaveChangesAsync();
@@ -87,7 +99,49 @@ namespace RZHD.Services.Configure
             foreach (var ticket in context.Tickets)
             {
                 var sts = await context.Stations.ToListAsync();
-                ticket.Stations = sts.GetRange(new Random().Next(5), 2);
+                ticket.Stations = new List<StationTicket>();
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[0].Id,
+                    Station = sts[0],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[1].Id,
+                    Station = sts[1],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[2].Id,
+                    Station = sts[2],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[3].Id,
+                    Station = sts[3],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[4].Id,
+                    Station = sts[4],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
+                ticket.Stations.Add(new StationTicket
+                {
+                    StationId = sts[5].Id,
+                    Station = sts[5],
+                    TicketId = ticket.Id,
+                    Ticket = ticket
+                });
             }
 
             await context.SaveChangesAsync();
@@ -100,7 +154,7 @@ namespace RZHD.Services.Configure
                 res.DeliverStations = new List<StationRestaurant>();
                 res.DeliverStations.Add(new StationRestaurant
                 {
-                    DeliverTime = TimeSpan.FromMinutes(40),
+                    DeliverTime = TimeSpan.FromMinutes(65),
                     RestaurantId = res.Id,
                     Restaurant = res,
                     StationId = sts[0].Id,
@@ -108,7 +162,7 @@ namespace RZHD.Services.Configure
                 });
                 res.DeliverStations.Add(new StationRestaurant
                 {
-                    DeliverTime = TimeSpan.FromMinutes(35),
+                    DeliverTime = TimeSpan.FromMinutes(90),
                     RestaurantId = res.Id,
                     Restaurant = res,
                     StationId = sts[1].Id,
@@ -116,7 +170,7 @@ namespace RZHD.Services.Configure
                 });
                 res.DeliverStations.Add(new StationRestaurant
                 {
-                    DeliverTime = TimeSpan.FromMinutes(15),
+                    DeliverTime = TimeSpan.FromMinutes(40),
                     RestaurantId = res.Id,
                     Restaurant = res,
                     StationId = sts[2].Id,
@@ -129,18 +183,59 @@ namespace RZHD.Services.Configure
             // trains
             foreach (var train in context.Trains)
             {
-                var s = await context.Stations.ToListAsync();
-                var sts = s.GetRange(new Random().Next(4), 3);
+                var sts = await context.Stations.ToListAsync();
                 train.Stations = new List<StationTrain>();
                 train.Stations.Add(new StationTrain
                 {
-                    ArriveTime = new DateTime(),
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(30),
                     TrainId = train.Id,
                     Train = train,
                     StationId = sts[0].Id,
                     Station = sts[0]
                 });
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(70),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[1].Id,
+                    Station = sts[1]
+                });
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(100),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[2].Id,
+                    Station = sts[2]
+                });
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(100),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[3].Id,
+                    Station = sts[3]
+                });
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(100),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[4].Id,
+                    Station = sts[4]
+                });
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = train.DepartureTime + TimeSpan.FromMinutes(100),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[5].Id,
+                    Station = sts[5]
+                });
             }
+
+            await context.SaveChangesAsync();
         }
 
         private async Task AddTickets()
@@ -153,7 +248,7 @@ namespace RZHD.Services.Configure
             context.Tickets.Add(new Ticket
             {
                 Number = "num123",
-                DepartureTime = new DateTime(2019, 10, 3, 23, 54, 0),
+                DepartureTime = new DateTime(2019, 1, 1, 0, 30, 0),
                 ArriveTime = new DateTime(2019, 10, 5, 10, 30, 0),
                 WagonNumber = 9
             });
