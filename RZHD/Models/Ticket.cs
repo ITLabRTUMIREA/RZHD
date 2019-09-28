@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RZHD.Models
 {
@@ -9,6 +7,7 @@ namespace RZHD.Models
     {
         public int Id { get; set; }
         public string Number { get; set; }
+        public int WagonNumber { get; set; }
 
         public DateTime DepartureTime { get; set; }
         public DateTime ArriveTime { get; set; }

@@ -14,6 +14,8 @@ namespace RZHD.Data
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<StationRestaurant> StationRestaurants { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Train> Trains { get; set; }
+        public DbSet<StationTrain> StationTrains { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base (options)
         {
@@ -28,6 +30,30 @@ namespace RZHD.Data
             ConfigureRestaurant(builder);
             ConfigureStationRestaurant(builder);
             ConfigureTicket(builder);
+            ConfigureTrain(builder);
+            ConfigureStationTrain(builder);
+        }
+
+        private void ConfigureStationTrain(ModelBuilder builder)
+        {
+            builder.Entity<StationTrain>()
+                .HasKey(st => new { st.StationId, st.TrainId });
+
+            builder.Entity<StationTrain>()
+                .HasOne(st => st.Train)
+                .WithMany(tr => tr.Stations)
+                .HasForeignKey(st => st.TrainId);
+
+            builder.Entity<StationTrain>()
+                .HasOne(st => st.Station)
+                .WithMany(st => st.Trains)
+                .HasForeignKey(st => st.StationId);
+        }
+
+        private void ConfigureTrain(ModelBuilder builder)
+        {
+            builder.Entity<Train>()
+                .HasKey(tr => tr.Id);
         }
 
         private void ConfigureTicket(ModelBuilder builder)

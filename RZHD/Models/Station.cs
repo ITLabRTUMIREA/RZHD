@@ -11,5 +11,7 @@ namespace RZHD.Models
         public string Name { get; set; }
 
         public List<StationRestaurant> DeliverRestaurants { get; set; }
+
+        public List<StationTrain> Trains{ get; set; }
     }
 }
