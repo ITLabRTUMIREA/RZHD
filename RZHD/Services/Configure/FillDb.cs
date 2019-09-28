@@ -28,6 +28,34 @@ namespace RZHD.Services.Configure
         public async Task Configure()
         {
             await AddDefaultUser();
+            await AddStations();
+            await AddRestaurants();
+        }
+
+        private async Task AddRestaurants()
+        {
+            context.Restaurants.Add(new Restaurant
+            {
+                Name = "Русский повар"
+            });
+
+
+
+
+
+            await context.SaveChangesAsync();
+        }
+
+        private async Task AddStations()
+        {
+            context.Stations.Add(new Station
+            {
+                Name = "Нижний Новгород"
+            });
+
+
+
+            await context.SaveChangesAsync();
         }
 
         private async Task AddDefaultUser()
