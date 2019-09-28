@@ -8,11 +8,12 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { TicketView } from '../models/ticket-view';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TestService extends BaseService {
+export class TicketService extends BaseService {
   constructor(
     config: ApiConfiguration,
     http: HttpClient
@@ -21,48 +22,51 @@ export class TestService extends BaseService {
   }
 
   /**
-   * Path part for operation apiTestGet
+   * Path part for operation apiTicketGet
    */
-  static readonly ApiTestGetPath = '/api/test';
+  static readonly ApiTicketGetPath = '/api/ticket';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiTestGet()` instead.
+   * To access only the response body, use `apiTicketGet()` instead.
    *
    * This method doesn't expect any response body
    */
-  apiTestGet$Response(params?: {
+  apiTicketGet$Response(params?: {
+    ticket?: string;
 
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<StrictHttpResponse<TicketView>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TestService.ApiTestGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, TicketService.ApiTicketGetPath, 'get');
     if (params) {
 
+      rb.query('ticket', params.ticket);
 
     }
     return this.http.request(rb.build({
-      responseType: 'text',
-      accept: '*/*'
+      responseType: 'json',
+      accept: 'application/json'
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+        return r as StrictHttpResponse<TicketView>;
       })
     );
   }
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiTestGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiTicketGet$Response()` instead.
    *
    * This method doesn't expect any response body
    */
-  apiTestGet(params?: {
+  apiTicketGet(params?: {
+    ticket?: string;
 
-  }): Observable<void> {
+  }): Observable<TicketView> {
 
-    return this.apiTestGet$Response(params).pipe(
-      map((r: StrictHttpResponse<void>) => r.body as void)
+    return this.apiTicketGet$Response(params).pipe(
+      map((r: StrictHttpResponse<TicketView>) => r.body as TicketView)
     );
   }
 

@@ -12,6 +12,11 @@ import { ScannerComponent } from './scanner/scanner.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ScannerGuideComponent } from './scanner-guide/scanner-guide.component';
 import { ManualScannerComponent } from './manual-scanner/manual-scanner.component';
+import { ListRestComponent } from './list-rest/list-rest.component';
+import { ListRestItemComponent } from './list-rest-item/list-rest-item.component';
+import { PreloaderComponent } from './preloader/preloader.component';
+import { ListRestStationsComponent } from './list-rest-stations/list-rest-stations.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,11 @@ import { ManualScannerComponent } from './manual-scanner/manual-scanner.componen
     ScannerComponent,
     NavbarComponent,
     ScannerGuideComponent,
-    ManualScannerComponent
+    ManualScannerComponent,
+    ListRestComponent,
+    ListRestItemComponent,
+    PreloaderComponent,
+    ListRestStationsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +38,9 @@ import { ManualScannerComponent } from './manual-scanner/manual-scanner.componen
       {path: '', redirectTo: '/init', pathMatch: 'full'},
       {path: 'init', component: ScannerGuideComponent, data: {animation: 'ScannerGuidePage'}},
       {path: 'qr-scanner', component: ScannerComponent, data: {animation: 'ScannerPage'}},
-      {path: 'manual-scanner', component: ManualScannerComponent, data: {animation: 'ManualScannerPage'}}
+      {path: 'manual-scanner', component: ManualScannerComponent, data: {animation: 'ManualScannerPage'}},
+      {path: 'list-rest', component: ListRestComponent, data: {animation: 'ListRestPage'}},
+      {path: 'list-rest-stations', component: ListRestStationsComponent, data: {animation: 'ListRestStationsPage'}}
     ]),
     FormsModule,
     ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})
@@ -38,3 +49,4 @@ import { ManualScannerComponent } from './manual-scanner/manual-scanner.componen
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

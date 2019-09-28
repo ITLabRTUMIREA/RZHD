@@ -1,3 +1,3 @@
 export { AuthenticationService } from './services/authentication.service';
-export { SampleDataService } from './services/sample-data.service';
-export { TestService } from './services/test.service';
+export { RestaurantService } from './services/restaurant.service';
+export { TicketService } from './services/ticket.service';

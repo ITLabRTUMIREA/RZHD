@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthenticationService } from './services/authentication.service';
-import { SampleDataService } from './services/sample-data.service';
-import { TestService } from './services/test.service';
+import { RestaurantService } from './services/restaurant.service';
+import { TicketService } from './services/ticket.service';
 
 /**
  * Module that provides all services and configuration.
@@ -16,8 +16,8 @@ import { TestService } from './services/test.service';
   declarations: [],
   providers: [
     AuthenticationService,
-    SampleDataService,
-    TestService,
+    RestaurantService,
+    TicketService,
     ApiConfiguration
   ],
 })

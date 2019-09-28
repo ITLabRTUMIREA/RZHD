@@ -1,0 +1,12 @@
+.preloader {
+    background-color: #fff;
+    margin-top:56px;
+    visibility: visible;
+    opacity: 1 !important;
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+}
+
+.hidden {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
