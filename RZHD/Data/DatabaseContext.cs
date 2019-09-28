@@ -10,7 +10,7 @@ namespace RZHD.Data
 {
     public class DatabaseContext : IdentityDbContext<User, Role, int>
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base (options)
+        public DatabaseContext(DbContextOptions options) : base (options)
         {
 
         }

@@ -16,6 +16,9 @@ using RZHD.Services.Authorize;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
+using WebApp.Configure.Models;
+using WebApp.Configure.Models.Invokations;
+using RZHD.Services.Configure;
 
 namespace RZHD
 {
@@ -33,6 +36,7 @@ namespace RZHD
         {
             // Configure options
             services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
+            services.Configure<FillDbOptions>(Configuration.GetSection(nameof(FillDbOptions)));
 
             // JWT configuration
             var jwtOptions = Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
@@ -93,6 +97,9 @@ namespace RZHD
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddWebAppConfigure()
+                .AddTransientConfigure<FillDb>(Configuration.GetValue<bool>("FILL_DB"));
+
             services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -133,7 +140,10 @@ namespace RZHD
 
             app.UseSwagger();
 
+            app.UseWebAppConfigure();
+
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
