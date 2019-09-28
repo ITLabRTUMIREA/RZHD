@@ -28,8 +28,8 @@ namespace RZHD.Services.Configure
         public async Task Configure()
         {
             await AddDefaultUser();
-            await AddStations();
-            await AddRestaurants();
+            //await AddStations();
+            //await AddRestaurants();
         }
 
         private async Task AddRestaurants()
@@ -39,10 +39,17 @@ namespace RZHD.Services.Configure
                 Name = "Русский повар"
             });
 
+            context.Restaurants.Add(new Restaurant
+            {
+                Name = "Якитория"
+            });
 
+        context.Restaurants.Add(new Restaurant
+            {
+                Name = "Бургеркинг"
+            });
 
-
-
+            // to save our restaurants
             await context.SaveChangesAsync();
         }
 
@@ -53,7 +60,15 @@ namespace RZHD.Services.Configure
                 Name = "Нижний Новгород"
             });
 
+            context.Stations.Add(new Station
+            {
+                Name = "Казанксий вокзал"
+            });
 
+            context.Stations.Add(new Station
+            {
+                Name = "Адлер"
+            });
 
             await context.SaveChangesAsync();
         }
