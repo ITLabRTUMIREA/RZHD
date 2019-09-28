@@ -37,6 +37,10 @@ namespace RZHD.Data
 
             builder.Entity<Ticket>()
                 .HasMany(tic => tic.Stations);
+
+            builder.Entity<Ticket>()
+                .HasIndex(tic => tic.Number)
+                .IsUnique();
         }
 
         private void ConfigureStationRestaurant(ModelBuilder builder)
