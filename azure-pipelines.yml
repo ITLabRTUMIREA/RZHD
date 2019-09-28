@@ -13,6 +13,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: 'RZHD/appsettings.secret.json'
+    filecontent: '{}'
+    endWithNewLine: true
+
 - script: dotnet publish --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
   displayName: 'dotnet publish $(buildConfiguration)'
 
