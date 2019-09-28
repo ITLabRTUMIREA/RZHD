@@ -39,9 +39,10 @@ namespace RZHD.Controllers
 
             var result = await userManager.CreateAsync(user,registerRequest.Password);
 
-            
-
-            return Ok();
+            if (result.Succeeded)
+                return Ok();
+            else
+                return BadRequest("Something went wrong");
         }
 
         [AllowAnonymous]
