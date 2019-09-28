@@ -245,12 +245,12 @@ namespace RZHD.Services.Configure
         }
 
         private string num1 = "ХХ1234567 123456";
-        private string num2 = "plu9712";
-        private string num3 = "ljk9712";
-        private string num4 = "ksj7653";
-        private string num5 = "gfd2123";
-        private string num6 = "hfd1233";
-        private string num7 = "gre2352";
+        private string num2 = "АИ9872512 016253";
+        private string num3 = "ОР9735535 186537";
+        private string num4 = "НА0836574 928637";
+        private string num5 = "УА2086537 896257";
+        private string num6 = "ФИ1954712 186412";
+        private string num7 = "ВЫ9876543 987654";
 
         private async Task AddTickets()
         {
