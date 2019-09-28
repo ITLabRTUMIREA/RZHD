@@ -31,7 +31,54 @@ namespace RZHD.Services.Configure
             await AddStations();
             await AddRestaurants();
             await AddTickets();
+            await AddTrains();
+
+
             await AddLinks();
+        }
+
+        private async Task AddTrains()
+        {
+            foreach (var train in context.Trains)
+                context.Trains.Remove(train);
+
+            context.Trains.Add(new Train
+            {
+                Number = "069ИА",
+                WagonsNumber = 13
+            });
+
+            context.Trains.Add(new Train
+            {
+                Number = "070ИА",
+                WagonsNumber = 12
+            });
+
+            context.Trains.Add(new Train
+            {
+                Number = "065И",
+                WagonsNumber = 9
+            });
+
+            context.Trains.Add(new Train
+            {
+                Number = "066И",
+                WagonsNumber = 9
+            });
+
+            context.Trains.Add(new Train
+            {
+                Number = "099МК",
+                WagonsNumber = 13
+            });
+
+            context.Trains.Add(new Train
+            {
+                Number = "100МК",
+                WagonsNumber = 12
+            });
+
+            await context.SaveChangesAsync();
         }
 
         private async Task AddLinks()
@@ -78,6 +125,12 @@ namespace RZHD.Services.Configure
             }
 
             await context.SaveChangesAsync();
+
+            // trains
+            foreach (var train in context.Trains)
+            {
+
+            }
         }
 
         private async Task AddTickets()

@@ -105,11 +105,11 @@ namespace RZHD
 
             services.AddMvc(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                     .RequireAuthenticatedUser()
-                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                     .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                //var policy = new AuthorizationPolicyBuilder()
+                //     .RequireAuthenticatedUser()
+                //     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                //     .Build();
+                //options.Filters.Add(new AuthorizeFilter(policy));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(c =>
