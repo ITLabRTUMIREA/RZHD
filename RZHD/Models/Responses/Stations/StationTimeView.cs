@@ -8,6 +8,6 @@ namespace RZHD.Models.Responses.Stations
     public class StationTimeView
     {
         public StationView Station { get; set; }
-        public TimeSpan Time { get; set; }
+        public string Time { get; set; }
     }
 }

@@ -69,6 +69,7 @@ namespace RZHD.Controllers.Restaurants
 
                     foreach (var restaurant in st.DeliverRestaurants)
                     {
+                        // DAYS
                         // too late
                         if (train.ArriveTime < time)
                             continue;
@@ -85,10 +86,12 @@ namespace RZHD.Controllers.Restaurants
                             ImageUrl = "www.google.com",
                             StationTime = new List<StationTimeView>()
                         });
+                        TimeSpan temp = train.ArriveTime - time;
+                        string timeStr = temp.Days + " " + temp.Hours + " " + temp.Minutes; 
                         result.Last().StationTime.Add(new StationTimeView
                         {
                             Station = mapper.Map<StationView>(st),
-                            Time = train.ArriveTime - time
+                            Time = timeStr
                         });
                     }
                 }
