@@ -249,7 +249,7 @@ namespace RZHD.Services.Configure
         private string num4 = "НА0836574 928637";
         private string num5 = "УА2086537 896257";
         private string num6 = "ФИ1954712 186412";
-        private string num7 = "ВЫ9876543 987654";
+        private string num7 = "123";
 
         private async Task AddTickets()
         {

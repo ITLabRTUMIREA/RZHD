@@ -25,7 +25,7 @@ namespace RZHD.Controllers.Restaurants
             this.mapper = mapper;
         }
 
-        [HttpGet("{ticket:string}")]
+        [HttpGet("{ticket}")]
         public async Task<ActionResult<Response<IEnumerable<RestaurantView>>>> Get(string ticket)
         {
             var response = new Response<List<RestaurantView>>
