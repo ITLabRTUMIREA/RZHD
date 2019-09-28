@@ -35,7 +35,7 @@ namespace RZHD.Controllers.Restaurants
                     .Include(t => t.Stations)
                     .SingleAsync();
 
-                var time = new DateTime(2019, 9, 28, 21, 35, 0);
+                var time = new DateTime(2019, 9, 28, 21, 37, 0);
 
                 List<RestaurantView> result = new List<RestaurantView>();
 
@@ -95,6 +95,7 @@ namespace RZHD.Controllers.Restaurants
                     }
                 }
 
+                result.ForEach(r => r.StationTime.OrderBy(stt => stt.Time));
                 return Ok(result);
             }
             catch (Exception)
