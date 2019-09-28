@@ -32,18 +32,20 @@ namespace RZHD.Services.Configure
 
         private async Task AddDefaultUser()
         {
-            if (!await userManager.Users.AnyAsync(u => u.Email == options.Email))
-            {
-                await userManager.CreateAsync(new User
+            //if (!await userManager.Users.AnyAsync(u => u.Email == options.Email))
+            //{
+                var r = await userManager.CreateAsync(new User
                 {
                     Firstname = options.Firstname,
                     Secondname = options.Secondname,
                     Middlename = options.Middlename,
                     Email = options.Email,
+                    UserName = options.Email,
                     Age = options.Age,
                     BonusQuantity = options.BonusQuantity
                 }, options.Password);
-            }
+                Console.WriteLine("Create default user ------- " + r.Succeeded);
+            //}
         }
     }
 }
