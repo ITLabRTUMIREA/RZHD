@@ -11,13 +11,15 @@ import { ApiModule } from './api/api.module';
 import { ScannerComponent } from './scanner/scanner.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ScannerGuideComponent } from './scanner-guide/scanner-guide.component';
+import { ManualScannerComponent } from './manual-scanner/manual-scanner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScannerComponent,
     NavbarComponent,
-    ScannerGuideComponent
+    ScannerGuideComponent,
+    ManualScannerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -27,7 +29,7 @@ import { ScannerGuideComponent } from './scanner-guide/scanner-guide.component';
       {path: '', redirectTo: '/init', pathMatch: 'full'},
       {path: 'init', component: ScannerGuideComponent, data: {animation: 'ScannerGuidePage'}},
       {path: 'qr-scanner', component: ScannerComponent, data: {animation: 'ScannerPage'}},
-      {path: '**', redirectTo: '/'}
+      {path: 'manual-scanner', component: ManualScannerComponent, data: {animation: 'ManualScannerPage'}}
     ]),
     FormsModule,
     ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})

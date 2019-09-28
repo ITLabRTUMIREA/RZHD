@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap align-items-center justify-content-center f">
-        <div class="col px-4 flex-fill mt-5" >
+        <div class="col px-4 flex-fill mt-4" >
             
-            <h3 style="font-weight: 800;">Сканировать QR</h3>
+            <h3 style="font-weight: 800;">Сканер билета</h3>
             
         </div>
 
@@ -11,10 +11,17 @@
 
         <div class="col px-4 flex-fill">
             
+            <div class="media mt-2 mb-5">
+                <img src="/assets/img/warn icon.png" class="mr-3" height="48">
+                <div class="media-body">
+                    <h5 class="mt-0">Камера недоступна</h5>
+                    Разрешите приложению доступ к камере либо введите код вручную.
+                </div>
+            </div>
 
-            <div class="d-flex justify-content-between mt-2">
-                    <button type="button" routerLink="/qr-scanner" class="btn btn-danger flex-grow-1 mr-1">Сканировать</button>
-                    <button type="button" routerLink="/qr-enter" class="btn btn-light flex-grow-1 ml-1">Ввести вручную</button>
+            <div class="d-flex justify-content-between mt-4">
+                    <button type="button" routerLink="/init" class="btn btn-light flex-grow-1 mr-1">Назад</button>
+                    <button type="button" routerLink="/manual-scanner" class="btn btn-danger flex-grow-1 ml-1">Ввести код вручную</button>
             </div>      
         </div>
 </div>
