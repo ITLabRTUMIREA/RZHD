@@ -27,6 +27,24 @@ namespace RZHD.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest registerRequest)
+        {
+            var user = await userManager.FindByEmailAsync(registerRequest.Email);
+            if(user!=null)
+                return BadRequest("User with this email exists");
+
+            //user = mapper.Map<User>(registerRequest);
+            user.UserName = user.Email;
+
+            var result = await userManager.CreateAsync(user,registerRequest.Password);
+
+            
+
+            return Ok();
+        }
+
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<LoginView>> Login([FromBody] LoginRequest loginRequest)
         {
