@@ -244,7 +244,7 @@ namespace RZHD.Services.Configure
             await context.SaveChangesAsync();
         }
 
-        private string num1 = "num1234";
+        private string num1 = "ХХ1234567 123456";
         private string num2 = "plu9712";
         private string num3 = "ljk9712";
         private string num4 = "ksj7653";

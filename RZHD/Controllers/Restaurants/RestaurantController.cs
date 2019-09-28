@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RZHD.Data;
 using RZHD.Models;
+using RZHD.Models.Responses;
 using RZHD.Models.Responses.Restaurants;
 using RZHD.Models.Responses.Stations;
 using System;
@@ -26,7 +26,7 @@ namespace RZHD.Controllers.Restaurants
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RestaurantView>>> Get(string ticket)
+        public async Task<ActionResult<Response<IEnumerable<RestaurantView>>>> Get(string ticket)
         {
             try
             {
@@ -77,7 +77,6 @@ namespace RZHD.Controllers.Restaurants
                         if (train.ArriveTime - time < restaurant.DeliverTime)
                             continue;
 
-                        //result.Add(mapper.Map<RestaurantView>(restaurant.Restaurant));
                         result.Add(new RestaurantView
                         {
                             Id = restaurant.RestaurantId,
@@ -96,11 +95,21 @@ namespace RZHD.Controllers.Restaurants
                 }
 
                 result.ForEach(r => r.StationTime.OrderBy(stt => stt.Time));
-                return Ok(result);
+                return Ok(new Response<List<RestaurantView>>
+                {
+                    Status = true,
+                    Error = "",
+                    Content = result
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest("Something went wrong");
+                return Ok(new Response<List<RestaurantView>>
+                {
+                    Status = false,
+                    Error = ex.Message,
+                    Content = new List<RestaurantView>()
+                });
             }
         }
     }
