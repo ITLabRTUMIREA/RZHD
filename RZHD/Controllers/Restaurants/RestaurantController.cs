@@ -35,7 +35,7 @@ namespace RZHD.Controllers.Restaurants
                     .Include(t => t.Stations)
                     .SingleAsync();
 
-                var time = DateTime.Now;
+                var time = new DateTime(2019, 9, 28, 21, 35, 0);
 
                 List<RestaurantView> result = new List<RestaurantView>();
 
@@ -51,7 +51,7 @@ namespace RZHD.Controllers.Restaurants
                         continue;
 
 
-                    // get all trains
+                    // get one train
                     StationTrain train = null;
                     foreach (var trai in st.Trains)
                     {
@@ -67,19 +67,14 @@ namespace RZHD.Controllers.Restaurants
                     if (train == null)
                         continue;
 
-                    //foreach (var tr in st.Trains)
-                    //{
-                    //    if (tr.Train.Number != tick.Number)
-                    //        continue;
-
-                    //    train = tr;
-                    //    break;
-                    //}
-
                     foreach (var restaurant in st.DeliverRestaurants)
                     {
-                        // calculate time
-                        if (train.ArriveTime - time > restaurant.DeliverTime)
+                        // too late
+                        if (train.ArriveTime < time)
+                            continue;
+
+                        // if less - no time
+                        if (train.ArriveTime - time < restaurant.DeliverTime)
                             continue;
 
                         //result.Add(mapper.Map<RestaurantView>(restaurant.Restaurant));
