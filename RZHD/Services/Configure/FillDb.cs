@@ -35,64 +35,6 @@ namespace RZHD.Services.Configure
 
             await AddLinks();
         }
-
-        private async Task AddTrains()
-        {
-            foreach (var train in context.Trains)
-                context.Trains.Remove(train);
-
-            context.Trains.Add(new Train
-            {
-                Number = num1,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 2, 0, 0, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 20, 50, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num2,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 3, 10, 2, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 21, 51, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num3,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 1, 3, 7, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 20, 22, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num4,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 2, 11, 33, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 20, 49, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num5,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 3, 1, 1, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 21, 0, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num6,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 4, 5, 1, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 22, 0, 0)
-            });
-            context.Trains.Add(new Train
-            {
-                Number = num7,
-                WagonsNumber = new Random().Next(1, 23),
-                ArriveTIme = new DateTime(2019, 10, 8, 1, 1, 0),
-                DepartureTime = new DateTime(2019, 9, 28, 20, 8, 0)
-            });
-            await context.SaveChangesAsync();
-        }
-
         private async Task AddLinks()
         {
             var sts = await context.Stations.ToListAsync();
@@ -243,6 +185,63 @@ namespace RZHD.Services.Configure
             await context.SaveChangesAsync();
         }
 
+        private async Task AddTrains()
+        {
+            foreach (var train in context.Trains)
+                context.Trains.Remove(train);
+
+            context.Trains.Add(new Train
+            {
+                Number = num1,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 2, 0, 0, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 20, 50, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num2,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 3, 10, 2, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 21, 51, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num3,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 1, 3, 7, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 20, 22, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num4,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 2, 11, 33, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 20, 49, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num5,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 3, 1, 1, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 21, 0, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num6,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 4, 5, 1, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 22, 0, 0)
+            });
+            context.Trains.Add(new Train
+            {
+                Number = num7,
+                WagonsNumber = new Random().Next(1, 23),
+                ArriveTIme = new DateTime(2019, 10, 8, 1, 1, 0),
+                DepartureTime = new DateTime(2019, 9, 28, 20, 8, 0)
+            });
+            await context.SaveChangesAsync();
+        }
+
         private string num1 = "ХХ1234567 123456";
         private string num2 = "АИ9872512 016253";
         private string num3 = "ОР9735535 186537";
@@ -320,37 +319,305 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Русский повар",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "Тесто и мясо",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Чебурек",
+                                Price = 99,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Пельмени",
+                                Price = 99,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Булочка с мясом",
+                                Price = 39,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Якитория",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "Роллы",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Горячие",
+                                Price = 109,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Филадельфия",
+                                Price = 149,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Самурай",
+                                Price = 99,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "С курицей",
+                                Price = 19,
+                                ImageUrl = ""
+                            }
+                        }
+                    },
+                    new Category
+                    {
+                        Name = "Суши",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Большой",
+                                Price = 79,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Вкусный",
+                                Price = 49,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Бургеркинг",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "Бургеры",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Кинг сайз",
+                                Price = 99,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Кинг не сайз",
+                                Price = 59,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Невкусный",
+                                Price = 199,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Красивый",
+                                Price = 49,
+                                ImageUrl = ""
+                            }
+                        }
+                    },
+                    new Category
+                    {
+                        Name = "Картофель",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Картофель фри",
+                                Price = 49,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Картофель по дер-ки",
+                                Price = 59,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Казахстан",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "С зеленью",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Очень вкусно",
+                                Price = 299,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Средней вкусности",
+                                Price = 159,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Собери сам",
+                                Price = 99,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             context.Restaurants.Add(new Restaurant
             {
                 Name = "МакДоналдс",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "Бургеры",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Биг мак",
+                                Price = 99,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Чизбургер",
+                                Price = 59,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Макчикен",
+                                Price = 199,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Фишбургер",
+                                Price = 49,
+                                ImageUrl = ""
+                            }
+                        }
+                    },
+                    new Category
+                    {
+                        Name = "Картофель",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Картофель фри",
+                                Price = 49,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Картофель по дер-ки",
+                                Price = 59,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             context.Restaurants.Add(new Restaurant
             {
                 Name = "КФС",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg"
+                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg",
+                Menu = new List<Category>
+                {
+                    new Category
+                    {
+                        Name = "Наборы",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Собери сам",
+                                Price = 199,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "6 штук",
+                                Price = 166,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Выгодный",
+                                Price = 99,
+                                ImageUrl = ""
+                            }
+                        }
+                    },
+                    new Category
+                    {
+                        Name = "Баскет",
+                        Products = new List<Product>
+                        {
+                            new Product
+                            {
+                                Name = "Большой",
+                                Price = 299,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Средний",
+                                Price = 159,
+                                ImageUrl = ""
+                            },
+                            new Product
+                            {
+                                Name = "Маленький",
+                                Price = 109,
+                                ImageUrl = ""
+                            }
+                        }
+                    }
+                }
             });
 
             await context.SaveChangesAsync();

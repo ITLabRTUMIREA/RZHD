@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RZHD.Data;
 using RZHD.Models;
 using RZHD.Models.Responses;
@@ -18,11 +19,13 @@ namespace RZHD.Controllers.Restaurants
     {
         private readonly DatabaseContext context;
         private readonly IMapper mapper;
+        private readonly ILogger<RestaurantController> logger;
 
-        public RestaurantController(DatabaseContext context, IMapper mapper)
+        public RestaurantController(DatabaseContext context, IMapper mapper, ILogger<RestaurantController> logger)
         {
             this.context = context;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         [HttpGet("{ticket}")]
@@ -31,7 +34,7 @@ namespace RZHD.Controllers.Restaurants
             var response = new Response<List<RestaurantView>>
             {
                 Status = false,
-                Error = "Something went critical wrong!!!",
+                Error = "Something went strange",
                 Content = new List<RestaurantView>()
             };
 
@@ -107,14 +110,22 @@ namespace RZHD.Controllers.Restaurants
                 response.Status = true;
                 return Ok(response);
             }
+            catch(InvalidOperationException ioe)
+            {
+                logger.LogError(ioe.Message + "\n" + ioe.StackTrace);
+                response.Error = "Билет не найден";
+                return Ok(response);
+            }
             catch (ArgumentNullException ane)
             {
-                response.Error = ane.Message;
+                logger.LogError(ane.Message + "\n" + ane.StackTrace);
+                response.Error = "Билет не найден";
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                response.Error = ex.Message;
+                logger.LogCritical(ex.Message + "\n" + ex.StackTrace);
+                response.Error = "Что-то пошло не так";
                 return Ok(response);
             }
         }

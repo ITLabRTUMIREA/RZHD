@@ -17,7 +17,8 @@ namespace RZHD.Data
         public DbSet<Train> Trains { get; set; }
         public DbSet<StationTrain> StationTrains { get; set; }
         public DbSet<StationTicket> StationTickets { get; set; }
-
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public DatabaseContext(DbContextOptions options) : base (options)
         {
@@ -34,6 +35,23 @@ namespace RZHD.Data
             ConfigureTrain(builder);
             ConfigureStationTrain(builder);
             ConfigureStationTicket(builder);
+            ConfigureCategory(builder);
+            ConfigureProduct(builder);
+        }
+
+        private void ConfigureCategory(ModelBuilder builder)
+        {
+            builder.Entity<Category>()
+                .HasKey(cat => cat.Id);
+
+            builder.Entity<Category>()
+                .HasMany(cat => cat.Products);
+        }
+
+        private void ConfigureProduct(ModelBuilder builder)
+        {
+            builder.Entity<Product>()
+                .HasKey(p => p.Id);
         }
 
         private void ConfigureStationTicket(ModelBuilder builder)
