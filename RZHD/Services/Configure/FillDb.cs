@@ -28,13 +28,13 @@ namespace RZHD.Services.Configure
         public async Task Configure()
         {
             await AddDefaultUser();
-            await AddStations();
-            await AddRestaurants();
-            await AddTickets();
-            await AddTrains();
+            //await AddStations();
+            //await AddRestaurants();
+            //await AddTickets();
+            //await AddTrains();
 
 
-            await AddLinks();
+            //await AddLinks();
         }
 
         private async Task AddTrains()
@@ -129,7 +129,17 @@ namespace RZHD.Services.Configure
             // trains
             foreach (var train in context.Trains)
             {
-
+                var s = await context.Stations.ToListAsync();
+                var sts = s.GetRange(new Random().Next(4), 3);
+                train.Stations = new List<StationTrain>();
+                train.Stations.Add(new StationTrain
+                {
+                    ArriveTime = new DateTime(),
+                    TrainId = train.Id,
+                    Train = train,
+                    StationId = sts[0].Id,
+                    Station = sts[0]
+                });
             }
         }
 

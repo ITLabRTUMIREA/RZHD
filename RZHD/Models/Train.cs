@@ -11,6 +11,9 @@ namespace RZHD.Models
         public string Number { get; set; }
         public int WagonsNumber { get; set; }
 
+        public DateTime DepartureTime { get; set; }
+        public DateTime ArriveTIme { get; set; }
+
         public List<StationTrain> Stations { get; set; }
     }
 }
