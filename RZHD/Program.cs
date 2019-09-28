@@ -20,7 +20,7 @@ namespace RZHD
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.ConfigureAppConfiguration(cfg => cfg.AddJsonFile("appsettings.secret.json"))
+                .ConfigureAppConfiguration(cfg => cfg.AddJsonFile("appsettings.secret.json"))
                 .UseStartup<Startup>();
     }
 }

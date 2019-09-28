@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +20,14 @@ namespace RZHD.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly IJwtFactory jwtFactory;
+        private readonly IMapper mapper;
 
-        public AuthenticationController(UserManager<User> userManager, IJwtFactory jwtFactory)
+        public AuthenticationController(UserManager<User> userManager,
+            IJwtFactory jwtFactory, IMapper mapper)
         {
             this.userManager = userManager;
             this.jwtFactory = jwtFactory;
+            this.mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -34,7 +38,7 @@ namespace RZHD.Controllers
             if(user!=null)
                 return BadRequest("User with this email exists");
 
-            //user = mapper.Map<User>(registerRequest);
+            user = mapper.Map<User>(registerRequest);
             user.UserName = user.Email;
 
             var result = await userManager.CreateAsync(user,registerRequest.Password);

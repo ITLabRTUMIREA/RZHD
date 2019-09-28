@@ -19,6 +19,7 @@ using Microsoft.OpenApi.Models;
 using WebApp.Configure.Models;
 using WebApp.Configure.Models.Invokations;
 using RZHD.Services.Configure;
+using AutoMapper;
 
 namespace RZHD
 {
@@ -99,6 +100,8 @@ namespace RZHD
 
             services.AddWebAppConfigure()
                 .AddTransientConfigure<FillDb>(Configuration.GetValue<bool>("FILL_DB"));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddMvc(options =>
             {
