@@ -25,9 +25,16 @@ namespace RZHD.Controllers.Restaurants
             this.mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("{ticket:string}")]
         public async Task<ActionResult<Response<IEnumerable<RestaurantView>>>> Get(string ticket)
         {
+            var response = new Response<List<RestaurantView>>
+            {
+                Status = false,
+                Error = "Something went critical wrong!!!",
+                Content = new List<RestaurantView>()
+            };
+
             try
             {
                 // ticket has all stations
@@ -95,21 +102,20 @@ namespace RZHD.Controllers.Restaurants
                 }
 
                 result.ForEach(r => r.StationTime.OrderBy(stt => stt.Time));
-                return Ok(new Response<List<RestaurantView>>
-                {
-                    Status = true,
-                    Error = "",
-                    Content = result
-                });
+                response.Content = result;
+                response.Error = "";
+                response.Status = true;
+                return Ok(response);
+            }
+            catch (ArgumentNullException ane)
+            {
+                response.Error = ane.Message;
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return Ok(new Response<List<RestaurantView>>
-                {
-                    Status = false,
-                    Error = ex.Message,
-                    Content = new List<RestaurantView>()
-                });
+                response.Error = ex.Message;
+                return Ok(response);
             }
         }
     }

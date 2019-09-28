@@ -6,7 +6,6 @@ using RZHD.Models;
 using RZHD.Models.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Configure.Models.Configure.Interfaces;
 
@@ -320,32 +319,38 @@ namespace RZHD.Services.Configure
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "Русский повар"
+                Name = "Русский повар",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg"
             });
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "Якитория"
+                Name = "Якитория",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg"
             });
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "Бургеркинг"
+                Name = "Бургеркинг",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg"
             });
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "Казахстан"
+                Name = "Казахстан",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg"
             });
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "МакДоналдс"
+                Name = "МакДоналдс",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg"
             });
 
             context.Restaurants.Add(new Restaurant
             {
-                Name = "КФС"
+                Name = "КФС",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg"
             });
 
             await context.SaveChangesAsync();
