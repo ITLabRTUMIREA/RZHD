@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RZHD.Data;
 using RZHD.Models;
+using RZHD.Models.Requests.Restaurant;
 using RZHD.Models.Responses;
 using RZHD.Models.Responses.Restaurants;
 using RZHD.Models.Responses.Stations;
@@ -164,6 +165,62 @@ namespace RZHD.Controllers.Restaurants
             {
                 logger.LogError(ane.Message + "\n" + ane.StackTrace);
                 response.Error = "Ресторан не найден";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical(ex.Message + "\n" + ex.StackTrace);
+                response.Error = "Что-то пошло не так";
+                return Ok(response);
+            }
+        }
+
+        [HttpPost("admin")]
+        public async Task<ActionResult<Response<int>>> CreateOrder([FromBody] CreateOrderRequest createOrder)
+        {
+            var response = new Response<int>
+            {
+                Status = false,
+                Error = "Something went strange",
+                Content = -1
+            };
+            try
+            {
+                // get products from restaurants on these stations
+                List<StationRestaurant> stationRestaurants = new List<StationRestaurant>();
+                for (int i = 0; i < createOrder.StationsId.Count; i++)
+                {
+                    for (int j = 0; j < createOrder.RestaurantsId.Count; j++)
+                    {
+                        // by station id and restaurant id
+                        var temp = await context.StationRestaurants.Where(str => str.StationId == createOrder.StationsId[i] && str.RestaurantId == createOrder.RestaurantsId[j])
+                            .Include(str => str.Restaurant)
+                                .ThenInclude(res => res.Menu)
+                                    .ThenInclude(menu => menu.Products)
+                            .SingleOrDefaultAsync();
+
+                        if (temp == null)
+                            continue;
+
+                        stationRestaurants.Add(temp);
+                    }
+                }
+
+                List<Product> products = new List<Product>();
+                for (int i = 0; i < createOrder.ProductsId.Count; i++)
+                {
+                    foreach (var stRes in stationRestaurants)
+                    {
+                        foreach (var cat in stRes.Restaurant.Menu)
+                        {
+                            //cat.Products.Where();
+                        }
+                    }
+                }
+
+                response.Status = true;
+                response.Error = "";
+                response.Content = -1;
                 return Ok(response);
             }
             catch (Exception ex)

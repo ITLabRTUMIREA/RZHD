@@ -341,19 +341,19 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Чебурек",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Пельмени",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Булочка с мясом",
                                 Price = 39,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
@@ -375,25 +375,25 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Горячие",
                                 Price = 109,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Филадельфия",
                                 Price = 149,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Самурай",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "С курицей",
                                 Price = 19,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     },
@@ -406,13 +406,13 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Большой",
                                 Price = 79,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Вкусный",
                                 Price = 49,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
@@ -434,25 +434,25 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Кинг сайз",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Кинг не сайз",
                                 Price = 59,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Невкусный",
                                 Price = 199,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Красивый",
                                 Price = 49,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     },
@@ -465,13 +465,13 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Картофель фри",
                                 Price = 49,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Картофель по дер-ки",
                                 Price = 59,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
@@ -493,19 +493,19 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Очень вкусно",
                                 Price = 299,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Средней вкусности",
                                 Price = 159,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Собери сам",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
@@ -527,25 +527,25 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Биг мак",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Чизбургер",
                                 Price = 59,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Макчикен",
                                 Price = 199,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Фишбургер",
                                 Price = 49,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     },
@@ -558,13 +558,13 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Картофель фри",
                                 Price = 49,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Картофель по дер-ки",
                                 Price = 59,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
@@ -586,19 +586,19 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Собери сам",
                                 Price = 199,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "6 штук",
                                 Price = 166,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Выгодный",
                                 Price = 99,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     },
@@ -611,19 +611,19 @@ namespace RZHD.Services.Configure
                             {
                                 Name = "Большой",
                                 Price = 299,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Средний",
                                 Price = 159,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             },
                             new Product
                             {
                                 Name = "Маленький",
                                 Price = 109,
-                                ImageUrl = ""
+                                ImageUrl = "https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg"
                             }
                         }
                     }
