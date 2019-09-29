@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
     <PackageReference Include="RTUITLab.WebApp.Configure" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.0.0-rc3" />

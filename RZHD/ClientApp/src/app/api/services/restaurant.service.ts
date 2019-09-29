@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 import { CreateOrderRequest } from '../models/create-order-request';
 import { Int32Response } from '../models/int-32-response';
 import { MenuViewIEnumerableResponse } from '../models/menu-view-i-enumerable-response';
+import { OrderViewResponse } from '../models/order-view-response';
 import { RestaurantViewIEnumerableResponse } from '../models/restaurant-view-i-enumerable-response';
 
 @Injectable({
@@ -168,6 +169,55 @@ export class RestaurantService extends BaseService {
 
     return this.apiRestaurantAdminPost$Json$Response(params).pipe(
       map((r: StrictHttpResponse<Int32Response>) => r.body as Int32Response)
+    );
+  }
+
+  /**
+   * Path part for operation apiRestaurantAdimnOrderIdGet
+   */
+  static readonly ApiRestaurantAdimnOrderIdGetPath = '/api/restaurant/adimn/{orderId}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiRestaurantAdimnOrderIdGet()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  apiRestaurantAdimnOrderIdGet$Response(params: {
+    orderId: number;
+
+  }): Observable<StrictHttpResponse<OrderViewResponse>> {
+
+    const rb = new RequestBuilder(this.rootUrl, RestaurantService.ApiRestaurantAdimnOrderIdGetPath, 'get');
+    if (params) {
+
+      rb.path('orderId', params.orderId);
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<OrderViewResponse>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiRestaurantAdimnOrderIdGet$Response()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  apiRestaurantAdimnOrderIdGet(params: {
+    orderId: number;
+
+  }): Observable<OrderViewResponse> {
+
+    return this.apiRestaurantAdimnOrderIdGet$Response(params).pipe(
+      map((r: StrictHttpResponse<OrderViewResponse>) => r.body as OrderViewResponse)
     );
   }
 
