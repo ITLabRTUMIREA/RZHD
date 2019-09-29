@@ -2,8 +2,8 @@
 <div class="d-flex flex-wrap align-items-center justify-content-center f">
         <div class="col px-4 flex-fill mt-4" >
             
-           <!--<h3 style="font-weight: 800;">Выберите станцию</h3>--> 
-           <h3 style="font-weight: 800;">Подтвердите заказ</h3>
+           <h3 style="font-weight: 800;">Выберите станцию</h3>
+           
             
         </div>
 
@@ -21,14 +21,14 @@
                                     <div class="custom-control custom-radio my-1">
                                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio1">
-                                                <span class="badge badge-danger timelabel">{{itemdata.time}}</span> Заказать набор <!--{{itemdata.station.name}}-->
+                                                <span class="badge badge-danger timelabel">{{itemdata.time}}</span> {{itemdata.station.name}}
                                             </label>
                                     </div>
                                     </div>
                                 </div>
 
                                
-                                <button type="button" routerLink="/order-status"style="width:100%" class="btn btn-sm btn-danger mt-3">Подтвердить заказ</button>
+                                <button type="button" routerLink="/menu-rest" style="width:100%" class="btn btn-sm btn-danger mt-3">Подтвердить заказ</button>
 
                                 <p class="card-text"></p>
                         </div>

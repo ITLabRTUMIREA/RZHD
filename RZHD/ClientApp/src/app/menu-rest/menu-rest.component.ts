@@ -18,7 +18,7 @@ export class MenuRestComponent implements OnInit {
 
   ngOnInit() {
     this.olddata = this.tickrest.getItem() 
-    //console.log(this.olddata)
+    console.log(this.olddata)
     this.men.getRestaurantMenu(this.olddata.id).subscribe(data => {
       console.log(data)
       if(data.status)
