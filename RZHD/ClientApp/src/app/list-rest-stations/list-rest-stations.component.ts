@@ -8,8 +8,8 @@ import { TicketrestaurantService } from '../ticketrestaurant.service';
 })
 export class ListRestStationsComponent implements OnInit {
 
-  data = {title: "Шаурма Хауз", img: 'шаурма'};
-
+  //data = {title: "Шаурма Хауз", img: 'шаурма'};
+  data ;
   constructor(private tickrest: TicketrestaurantService) { }
 
   ngOnInit() {
