@@ -1,9 +1,9 @@
 /* tslint:disable */
 export enum Status {
-  0 = 0,
-  1 = 1,
-  2 = 2,
-  3 = 3,
-  4 = 4,
-  5 = 5
+  "Payed" = 0,
+  "ConfirmRequest" = 1,
+  "Cook" = 2,
+  "InTravel" = 3,
+  "WaitingForClient" = 4,
+  "Delivered" = 5
 }
