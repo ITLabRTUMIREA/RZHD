@@ -5,6 +5,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthenticationService } from './services/authentication.service';
 import { RestaurantService } from './services/restaurant.service';
+import { SummaryService } from './services/summary.service';
 import { TicketService } from './services/ticket.service';
 
 /**
@@ -17,6 +18,7 @@ import { TicketService } from './services/ticket.service';
   providers: [
     AuthenticationService,
     RestaurantService,
+    SummaryService,
     TicketService,
     ApiConfiguration
   ],

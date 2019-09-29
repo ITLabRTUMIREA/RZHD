@@ -173,6 +173,7 @@ export class RestaurantService extends BaseService {
   }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   /**
    * Path part for operation apiRestaurantAdimnOrderIdGet
    */
@@ -222,6 +223,8 @@ export class RestaurantService extends BaseService {
     );
   }
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 }

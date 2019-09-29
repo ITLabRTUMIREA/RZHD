@@ -11,9 +11,12 @@ export { MenuViewIEnumerableResponse } from './models/menu-view-i-enumerable-res
 export { CreateOrderRequest } from './models/create-order-request';
 export { Int32Response } from './models/int-32-response';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export { Status } from './models/status';
 export { OrderView } from './models/order-view';
 export { OrderViewResponse } from './models/order-view-response';
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 export { TicketView } from './models/ticket-view';
