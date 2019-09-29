@@ -105,21 +105,7 @@ namespace RZHD.Controllers.Restaurants
                 }
 
                 result.ForEach(r => r.StationTime.OrderBy(stt => stt.Time));
-                var group = result.GroupBy(selector => selector.Id).ToList();
-                List<RestaurantView> res1 = new List<RestaurantView>();
-                foreach(var g in group)
-                {
-                    RestaurantView restaurantView = new RestaurantView();
-                    restaurantView.Id = Convert.ToInt32(g.Key);
-                    foreach (var item in g)
-                    {
-                        restaurantView.Name = item.Name;
-                        restaurantView.ImageUrl = item.ImageUrl;
-                        restaurantView.StationTime = item.StationTime;
-                    }
-                    res1.Add(restaurantView);
-                }
-                response.Content = res1;
+                response.Content = result;
                 response.Error = "";
                 response.Status = true;
                 return Ok(response);
