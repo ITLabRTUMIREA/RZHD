@@ -1,6 +1,6 @@
-﻿namespace RZHD.Models
+﻿namespace RZHD.Models.Responses.Restaurants
 {
-    public class Product
+    public class ProductView
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -95,7 +95,7 @@ namespace RZHD.Controllers.Restaurants
                             StationTime = new List<StationTimeView>()
                         });
                         TimeSpan temp = train.ArriveTime - time;
-                        string timeStr = temp.Days + " " + temp.Hours + " " + temp.Minutes; 
+                        string timeStr = temp.Days + " " + temp.Hours + " " + temp.Minutes;
                         result.Last().StationTime.Add(new StationTimeView
                         {
                             Station = mapper.Map<StationView>(st),
@@ -110,7 +110,7 @@ namespace RZHD.Controllers.Restaurants
                 response.Status = true;
                 return Ok(response);
             }
-            catch(InvalidOperationException ioe)
+            catch (InvalidOperationException ioe)
             {
                 logger.LogError(ioe.Message + "\n" + ioe.StackTrace);
                 response.Error = "Билет не найден";
@@ -120,6 +120,50 @@ namespace RZHD.Controllers.Restaurants
             {
                 logger.LogError(ane.Message + "\n" + ane.StackTrace);
                 response.Error = "Билет не найден";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical(ex.Message + "\n" + ex.StackTrace);
+                response.Error = "Что-то пошло не так";
+                return Ok(response);
+            }
+        }
+
+        [HttpGet("{restId:int}")]
+        public async Task<ActionResult<Response<IEnumerable<MenuView>>>> GetMenu(int restId)
+        {
+            var response = new Response<List<MenuView>>
+            {
+                Status = false,
+                Error = "Something went strange",
+                Content = new List<MenuView>()
+            };
+
+            try
+            {
+                var rest = await context.Restaurants.Where(r => r.Id == restId)
+                    .Include(r => r.Menu)
+                        .ThenInclude(m => m.Products)
+                    .SingleAsync();
+
+                List<MenuView> menu = new List<MenuView>();
+                menu = mapper.Map<List<MenuView>>(rest.Menu);
+                response.Status = true;
+                response.Error = "";
+                response.Content = menu;
+                return Ok(response);
+            }
+            catch (InvalidOperationException ioe)
+            {
+                logger.LogError(ioe.Message + "\n" + ioe.StackTrace);
+                response.Error = "Ресторан не найден";
+                return Ok(response);
+            }
+            catch (ArgumentNullException ane)
+            {
+                logger.LogError(ane.Message + "\n" + ane.StackTrace);
+                response.Error = "Ресторан не найден";
                 return Ok(response);
             }
             catch (Exception ex)

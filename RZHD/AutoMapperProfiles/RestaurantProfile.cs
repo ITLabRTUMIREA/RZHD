@@ -9,6 +9,10 @@ namespace RZHD.AutoMapperProfiles
         public RestaurantProfile()
         {
             CreateMap<Restaurant, RestaurantView>();
+
+            // menu
+            CreateMap<Category, MenuView>();
+            CreateMap<Product, ProductView>();
         }
     }
 }
