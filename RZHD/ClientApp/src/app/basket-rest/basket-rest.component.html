@@ -7,7 +7,7 @@
                 
         </div>
 
-        <div class="col px-4 flex-fill mt-2" >
+        <div *ngFor="let el of data" class="col px-4 flex-fill mt-2" >
 
 
              <div class="media my-2">
@@ -15,19 +15,11 @@
                     <img src="https://www.delivery-club.ru/media/cms/relation_product/11267/304598730_m200.jpg" height="64" class="mr-3" alt="...">
                 </div>
                 <div class="media-body ml-2">
-                  <h6 style="font-weight: 400;" class="mt-1">Куриная шаурма обычная</h6>
+                  <h6 style="font-weight: 400;" class="mt-1">{{el[0]}}</h6>
                   <div class="">
                     
                     <form class="form-inline">
-                        
-                        <button type="button" class="btn btn-primary btn-sm">
-                            -
-                        </button>
-                        <input style="width: 30px" class="form-control form-control-sm mx-1" type="text" placeholder="0">
-                        <button type="button" class="btn btn-primary btn-sm">
-                            +
-                        </button>
-                        <span class="badge badge-danger timelabel ml-3">390 руб.</span>
+                        <span class="badge badge-danger timelabel ml-3">{{el[1]}}</span>
                     </form>
                   </div>
                   
@@ -39,10 +31,10 @@
 
 
 
-        <div class="col px-4 mb-4 fixed-bottom" >
+        <div class="col px-4 pb-4 pt-3 fixed-bottom" style="background-color: white" >
             
-            <button type="button" style="width:100%" class="btn btn-danger ">
-                Оплатить заказ (390 руб.)
+            <button type="button" routerLink="/order-status"  style="width:100%" class="btn btn-danger ">
+                Оплатить заказ ({{price}} руб.)
             </button>
                     
         </div>

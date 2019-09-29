@@ -19,6 +19,7 @@ import { ListRestStationsComponent } from './list-rest-stations/list-rest-statio
 import { MenuRestComponent } from './menu-rest/menu-rest.component';
 import { BasketRestComponent } from './basket-rest/basket-rest.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
+import { RestappMainComponent } from './restapp-main/restapp-main.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { OrderStatusComponent } from './order-status/order-status.component';
     ListRestStationsComponent,
     MenuRestComponent,
     BasketRestComponent,
-    OrderStatusComponent
+    OrderStatusComponent,
+    RestappMainComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,7 +51,8 @@ import { OrderStatusComponent } from './order-status/order-status.component';
       {path: 'list-rest-stations', component: ListRestStationsComponent, data: {animation: 'ListRestStationsPage'}},
       {path: 'menu-rest', component: MenuRestComponent, data: {animation: 'MenuRestPage'}},
       {path: 'basket-rest', component: BasketRestComponent, data: {animation: 'BasketRestPage'}},
-      {path: 'order-status', component: OrderStatusComponent, data: {animation: 'OrderStatusPage'}}
+      {path: 'order-status', component: OrderStatusComponent, data: {animation: 'OrderStatusPage'}},
+      {path: 'rest/main', component: RestappMainComponent, data: {animation: 'RestappMainPage'}},
     ]),
     FormsModule,
     ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})

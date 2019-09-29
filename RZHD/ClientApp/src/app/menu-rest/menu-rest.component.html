@@ -45,11 +45,12 @@
                                       <h5 class="mt-0">{{tr.name}}</h5>
                                       <form class="form-inline">
                                     
-                                            <button type="button" routerLink="/order-status" class="btn btn-danger btn-sm">
+                                            <button type="button" (click)="Click(tr)" class="btn btn-danger btn-sm">
                                                 Заказать
                                             </button>
                                             <span class="badge badge-danger timelabel ml-3 mr-1">{{tr.price}} </span> руб.
                                         </form>
+                                
                                     </div>
                                   </div>
                         
@@ -61,18 +62,19 @@
 
 
                     </div>
+
                 </div>
 
 
 
 
-        <!-- <div class="col px-4 mb-4 fixed-bottom" >
+         <div class="col px-4 pb-4 pt-3 fixed-bottom" style="background-color: white" >
             
-            <button type="button" style="width:100%" class="btn btn-danger ">
+            <button type="button" (click)="Click2()" routerLink="/basket-rest" style="width:100%" class="btn btn-danger ">
                 В корзину
             </button>
                     
-        </div> -->
+        </div> 
 
         
 </div>
