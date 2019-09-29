@@ -29,13 +29,13 @@ namespace RZHD.Controllers.Restaurants
         }
 
         [HttpGet("{ticket}")]
-        public async Task<ActionResult<Response<IEnumerable<IGrouping<string, RestaurantView>>>>> Get(string ticket)
+        public async Task<ActionResult<Response<IEnumerable<RestaurantView>>>> Get(string ticket)
         {
-            var response = new Response<List<IGrouping<string, RestaurantView>>>
+            var response = new Response<List<RestaurantView>>
             {
                 Status = false,
                 Error = "Something went strange",
-                Content = new List<IGrouping<string, RestaurantView>>()
+                Content = new List<RestaurantView>()
             };
 
             try
@@ -105,8 +105,21 @@ namespace RZHD.Controllers.Restaurants
                 }
 
                 result.ForEach(r => r.StationTime.OrderBy(stt => stt.Time));
-                List<IGrouping<string, RestaurantView>> group = result.GroupBy(selector => selector.Name).ToList();
-                response.Content = group;
+                var group = result.GroupBy(selector => selector.Id).ToList();
+                List<RestaurantView> res1 = new List<RestaurantView>();
+                foreach(var g in group)
+                {
+                    RestaurantView restaurantView = new RestaurantView();
+                    restaurantView.Id = Convert.ToInt32(g.Key);
+                    foreach (var item in g)
+                    {
+                        restaurantView.Name = item.Name;
+                        restaurantView.ImageUrl = item.ImageUrl;
+                        restaurantView.StationTime = item.StationTime;
+                    }
+                    res1.Add(restaurantView);
+                }
+                response.Content = res1;
                 response.Error = "";
                 response.Status = true;
                 return Ok(response);
