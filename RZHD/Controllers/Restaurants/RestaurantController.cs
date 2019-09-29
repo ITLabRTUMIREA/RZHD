@@ -95,7 +95,7 @@ namespace RZHD.Controllers.Restaurants
                             StationTime = new List<StationTimeView>()
                         });
                         TimeSpan temp = train.ArriveTime - time;
-                        string timeStr = temp.Days + " " + temp.Hours + " " + temp.Minutes;
+                        string timeStr = temp.Days + " д. " + temp.Hours + " ч. " + temp.Minutes + " м.";
                         result.Last().StationTime.Add(new StationTimeView
                         {
                             Station = mapper.Map<StationView>(st),
