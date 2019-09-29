@@ -19,8 +19,9 @@ namespace RZHD.Data
         public DbSet<StationTicket> StationTickets { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
-        public DatabaseContext(DbContextOptions options) : base (options)
+        public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -37,6 +38,18 @@ namespace RZHD.Data
             ConfigureStationTicket(builder);
             ConfigureCategory(builder);
             ConfigureProduct(builder);
+            ConfigureOrder(builder);
+        }
+
+        private void ConfigureOrder(ModelBuilder builder)
+        {
+            builder.Entity<Order>(cfg =>
+            {
+                cfg.HasKey(or => or.Id);
+                cfg.HasMany(or => or.Products);
+                cfg.HasMany(or => or.Stations);
+                cfg.HasMany(or => or.Restaurants);
+            });
         }
 
         private void ConfigureCategory(ModelBuilder builder)

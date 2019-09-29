@@ -187,40 +187,33 @@ namespace RZHD.Controllers.Restaurants
             try
             {
                 // get products from restaurants on these stations
-                List<StationRestaurant> stationRestaurants = new List<StationRestaurant>();
-                for (int i = 0; i < createOrder.StationsId.Count; i++)
-                {
-                    for (int j = 0; j < createOrder.RestaurantsId.Count; j++)
-                    {
-                        // by station id and restaurant id
-                        var temp = await context.StationRestaurants.Where(str => str.StationId == createOrder.StationsId[i] && str.RestaurantId == createOrder.RestaurantsId[j])
-                            .Include(str => str.Restaurant)
-                                .ThenInclude(res => res.Menu)
-                                    .ThenInclude(menu => menu.Products)
-                            .SingleOrDefaultAsync();
-
-                        if (temp == null)
-                            continue;
-
-                        stationRestaurants.Add(temp);
-                    }
-                }
-
                 List<Product> products = new List<Product>();
                 for (int i = 0; i < createOrder.ProductsId.Count; i++)
+                    products.Add(await context.Products.Where(pr => pr.Id == createOrder.ProductsId[i]).SingleAsync());
+
+                List<Station> stations = new List<Station>();
+                for (int i = 0; i < createOrder.StationsId.Count; i++)
+                    stations.Add(await context.Stations.Where(st => st.Id == createOrder.StationsId[i]).SingleAsync());
+
+                List<Restaurant> restaurants = new List<Restaurant>();
+                for (int i = 0; i < createOrder.RestaurantsId.Count; i++)
+                    restaurants.Add(await context.Restaurants.Where(res => res.Id == createOrder.RestaurantsId[i]).SingleAsync());
+
+                Order order = new Order
                 {
-                    foreach (var stRes in stationRestaurants)
-                    {
-                        foreach (var cat in stRes.Restaurant.Menu)
-                        {
-                            //cat.Products.Where();
-                        }
-                    }
-                }
+                    TotalPrice = createOrder.TotalPrice,
+                    Status = Status.ConfirmRequest,
+                    Products = products,
+                    Stations = stations,
+                    Restaurants = restaurants
+                };
+
+                context.Orders.Add(order);
+                await context.SaveChangesAsync();
 
                 response.Status = true;
                 response.Error = "";
-                response.Content = -1;
+                response.Content = order.Id;
                 return Ok(response);
             }
             catch (Exception ex)

@@ -8,4 +8,6 @@ export { RestaurantViewIEnumerableResponse } from './models/restaurant-view-i-en
 export { ProductView } from './models/product-view';
 export { MenuView } from './models/menu-view';
 export { MenuViewIEnumerableResponse } from './models/menu-view-i-enumerable-response';
+export { CreateOrderRequest } from './models/create-order-request';
+export { Int32Response } from './models/int-32-response';
 export { TicketView } from './models/ticket-view';

@@ -329,7 +329,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Русский повар",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/44000090_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category
@@ -363,7 +363,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Якитория",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/2000013_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category
@@ -422,7 +422,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Бургеркинг",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/59a01bcda3f70_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category
@@ -481,7 +481,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "Казахстан",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/42000055_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/43000082_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category
@@ -515,7 +515,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "МакДоналдс",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/1000020_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/5d43e992e1d52_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category
@@ -574,7 +574,7 @@ namespace RZHD.Services.Configure
             context.Restaurants.Add(new Restaurant
             {
                 Name = "КФС",
-                ImageUrl = "https://www.delivery-club.ru/naturmort/59cdf8e60fa2a_480x300.jpg",
+                ImageUrl = "https://www.delivery-club.ru/naturmort/5ca31e7b22399_480x300.jpg&quot",
                 Menu = new List<Category>
                 {
                     new Category

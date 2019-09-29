@@ -66,7 +66,7 @@ namespace RZHD.Controllers
                     AccessToken = jwtFactory.GenerateAccessToken(user.Id)
                 });
             }
-            catch (ArgumentNullException ane)
+            catch (ArgumentNullException)
             {
                 return NotFound("Can't find user");
             }
