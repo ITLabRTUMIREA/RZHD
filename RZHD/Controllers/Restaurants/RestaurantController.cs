@@ -223,5 +223,32 @@ namespace RZHD.Controllers.Restaurants
                 return Ok(response);
             }
         }
+
+        [HttpGet("adimn/{orderId:int}")]
+        public async Task<ActionResult<Response<OrderView>>> GetInfoAboutOrder(int orderId)
+        {
+            var response = new Response<OrderView>
+            {
+                Status = false,
+                Error = "Something went strange",
+                Content = new OrderView()
+            };
+            try
+            {
+                Order order = await context.Orders.Where(or => or.Id == orderId).SingleAsync();
+                OrderView orderView = mapper.Map<OrderView>(order);
+
+                response.Status = true;
+                response.Error = "";
+                response.Content = orderView;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                logger.LogCritical(ex.Message + "\n" + ex.StackTrace);
+                response.Error = "Что-то пошло не так";
+                return Ok(response);
+            }
+        }
     }
 }
