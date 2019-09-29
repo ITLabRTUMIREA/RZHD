@@ -311,6 +311,16 @@ namespace RZHD.Services.Configure
 
         private async Task AddRestaurants()
         {
+            foreach (var product in context.Products)
+                context.Products.Remove(product);
+
+            await context.SaveChangesAsync();
+
+            foreach (var cat in context.Categories)
+                context.Categories.Remove(cat);
+
+            await context.SaveChangesAsync();
+
             foreach (var res in context.Restaurants)
                 context.Restaurants.Remove(res);
 
