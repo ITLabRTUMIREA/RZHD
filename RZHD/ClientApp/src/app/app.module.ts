@@ -17,6 +17,8 @@ import { ListRestItemComponent } from './list-rest-item/list-rest-item.component
 import { PreloaderComponent } from './preloader/preloader.component';
 import { ListRestStationsComponent } from './list-rest-stations/list-rest-stations.component';
 import { MenuRestComponent } from './menu-rest/menu-rest.component';
+import { BasketRestComponent } from './basket-rest/basket-rest.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { MenuRestComponent } from './menu-rest/menu-rest.component';
     ListRestItemComponent,
     PreloaderComponent,
     ListRestStationsComponent,
-    MenuRestComponent
+    MenuRestComponent,
+    BasketRestComponent,
+    OrderStatusComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,7 +47,9 @@ import { MenuRestComponent } from './menu-rest/menu-rest.component';
       {path: 'manual-scanner', component: ManualScannerComponent, data: {animation: 'ManualScannerPage'}},
       {path: 'list-rest', component: ListRestComponent, data: {animation: 'ListRestPage'}},
       {path: 'list-rest-stations', component: ListRestStationsComponent, data: {animation: 'ListRestStationsPage'}},
-      {path: 'menu-rest', component: MenuRestComponent, data: {animation: 'MenuRestPage'}}
+      {path: 'menu-rest', component: MenuRestComponent, data: {animation: 'MenuRestPage'}},
+      {path: 'basket-rest', component: BasketRestComponent, data: {animation: 'BasketRestPage'}},
+      {path: 'order-status', component: OrderStatusComponent, data: {animation: 'OrderStatusPage'}}
     ]),
     FormsModule,
     ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})

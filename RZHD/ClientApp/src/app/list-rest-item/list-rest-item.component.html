@@ -1,16 +1,20 @@
-<a href="list-rest-stations" style="color: black; text-decoration: none">
+<a routerLink="/list-rest-stations" (click)="test()" style="color: black; text-decoration: none">
 
     <div class="card a-shadow border-0 mb-4">
-        <div style="height:164px; overflow: hidden;"><img src="/assets/img/еда/{{data.img}}.jpg" class="card-img-top" alt="..."></div>
+        <div style="height:164px; overflow: hidden;"><img src="{{data.imageUrl}}" class="card-img-top" alt="..."></div>
             <div class="card-body py-3 px-3" style="position: relative">
             
-                <h5 style="font-weight: 800;">{{data.title}}</h5>
+                <h5 style="font-weight: 800;">{{data.name}}</h5>
 
+                <div style="position: absolute; top:13px; right:16px;" *ngFor="let itemdata of data.stationTime">
+                        <span class="badge badge-danger timelabel">{{itemdata.time}}</span>
+                    </div>
+                    
+                    <!--
                 <div style="position: absolute; top:13px; right:16px;">
-                    <span class="badge badge-danger timelabel">1 час 30 мин</span>
+                    <span class="badge badge-danger timelabel">{{data.stationTime[0].time}}</span>
                 </div>
-                
-
+            -->
                 <!-- <div class="trainview mt-3">
                     <img class="train" src="/assets/img/train.png" height="16" alt="">
                     <div class="trajectory">

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TicketrestaurantService } from '../ticketrestaurant.service';
 
 @Component({
   selector: 'app-list-rest-item',
@@ -9,9 +10,15 @@ export class ListRestItemComponent implements OnInit {
 
   @Input() data: any;
 
-  constructor() { }
+  constructor(
+    private tickrest: TicketrestaurantService
+  ) { }
 
   ngOnInit() {
   }
-
+test()
+{
+  console.log("pressed")
+this.tickrest.setItem(this.data)
+}
 }

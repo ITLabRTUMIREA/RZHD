@@ -1,0 +1,53 @@
+.card {
+    overflow: hidden;
+}
+
+.timelabel {
+    height: 20px;
+    line-height: 17px;
+}
+
+.trainview {
+    height: 16px; 
+    position: relative;
+}
+
+.trainview .train {
+    position:absolute; 
+    left:-38px;
+    z-index: 2;
+}
+
+.trainview .trajectory {
+    position: relative;
+    width:100%;
+    padding-right:2px;
+    bottom: -19px;
+    height: 3px;
+}
+
+.trainview .trajectory .prog {
+    width: auto;
+    background-color: #e9e9e9;
+    height:100%;
+}
+.trainview .trajectory .stations {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.trainview .trajectory .stations .station {
+    position: absolute;
+    width: 24px;
+    height: 26px;
+    left: 50%;
+    top:-26px;
+    background-image: url('/assets/img/station.png');
+}
+
+.a-shadow {
+    box-shadow: 0px 4px 14px 3px #00000014;
+}

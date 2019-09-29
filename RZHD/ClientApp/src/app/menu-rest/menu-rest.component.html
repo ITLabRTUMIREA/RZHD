@@ -6,13 +6,13 @@
         <div class="d-flex flex-column mt-3 px-3">
 
                 <div class="card a-shadow border-0 mb-4">
-                        <div style="height:80px; overflow: hidden;"><img src="/assets/img/еда/{{data.img}}.jpg" class="card-img-top" alt="..."></div>
+                        <div style="height:80px; overflow: hidden;"><img src="{{olddata.imageUrl}}" class="card-img-top" alt="..."></div>
                             <div class="card-body py-3 px-3" style="position: relative">
                               
-                                <h5 style="font-weight: 800;">{{data.title}}</h5>
+                                <h5 style="font-weight: 800;">{{olddata.name}}</h5>
                     
                                 <div style="position: absolute; top:13px; right:16px;">
-                                    <span class="badge badge-danger timelabel">1 час 30 мин</span>
+                                    <span class="badge badge-danger timelabel">{{oldata.time}}</span>
                                 </div>
                         </div>
                     </div>
@@ -20,17 +20,73 @@
         </div>
 
 
-        <div class="col px-4 flex-fill" >
-            
-            <h3 style="font-weight: 800;">Меню</h3>
-                
-        </div>
+
 
         <div class="col px-4 flex-fill mt-4" >
             
-             <h5 style="font-weight: 800;">Шаурма с курицей</h5>
-                    
+                <div class="col px-4 flex-fill" >
+            
+                        <h3 style="font-weight: 800;">Меню</h3>
+                            
         </div>
+            <div *ngFor="let item of data">
+                    <div class="col px-4 flex-fill mt-4" >
+                        
+                         <h5 class="mb-3" style="font-weight: 800;">{{item.name}}</h5>
+                        
+                        <div  *ngFor="let tr of item.products">
+
+                         <div class="media my-2">
+                            <div >
+                                    
+                                            <img src="{{tr.imageUrl}}" height="64" class="" alt="...">
+                                        
+                            <div class="media-body ml-2">
+                              <h6 style="font-weight: 400;" class="mt-1">{{tr.name}}</h6>
+                              <div class="">
+                                
+                                <form class="form-inline">
+                                    
+                                    <button type="button" class="btn btn-danger btn-sm">
+                                        Заказать
+                                    </button>
+                                    <span class="badge badge-danger timelabel ml-3">{{tr.price}}</span>
+                                </form>
+                              </div>
+                            </div>
+
+
+                            <div class="media">
+                                    <img src="{{tr.imageUrl}}" height="64" width="64" class="mr-3" alt="...">
+                                    <div class="media-body">
+                                      <h5 class="mt-0">{{tr.name}}</h5>
+                                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                    </div>
+                                  </div>
+                        </div>
+                        </div>
+                           
+                        
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+        <!-- <div class="col px-4 mb-4 fixed-bottom" >
+            
+            <button type="button" style="width:100%" class="btn btn-danger ">
+                В корзину
+            </button>
+                    
+        </div> -->
+
+        
 </div>
 
 

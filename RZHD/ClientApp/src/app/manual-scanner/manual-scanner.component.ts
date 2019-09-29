@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { SampleService } from '../sample.service';
+import { TicketrestaurantService } from '../ticketrestaurant.service';
 
 @NgModule({
 })
@@ -13,15 +13,24 @@ import { SampleService } from '../sample.service';
 export class ManualScannerComponent implements OnInit {
 
   ticketNumber = "";
+  data;
 
 
   constructor(
-    private sample: SampleService,
+    private tickrest: TicketrestaurantService,
     private router: Router) { }
 
   ngOnInit() {
   }
   onConfirmBtnClick() {
+    this.tickrest.getRestaurantTicket(this.ticketNumber).subscribe(data => {
+      if(data.status)
+      {
+      this.data = data.content;
+      this.tickrest.setData(this.data)
+      this.router.navigate(['/list-rest']);
+      }
+     });
     //this.dataService.loadRests(this.ticketNumber);
     /*this.dataService.getRestaurantTicket(this.ticketNumber).subscribe(data => {
       if (data.status) {

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
-import { RestaurantService } from '../api/services';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
-import { SampleService } from '../sample.service';
+import { TicketrestaurantService } from '../ticketrestaurant.service';
 
 @Component({
   selector: 'app-list-rest',
@@ -13,8 +12,8 @@ export class ListRestComponent implements OnInit {
   isPreloaderHidden = false;
 
   constructor(
-    private sample: SampleService,
-    private client: RestaurantService) {
+    private tickrest: TicketrestaurantService
+    ) {
 
   }
   data = [
@@ -29,6 +28,8 @@ export class ListRestComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.tickrest.getData());
+    this.data = this.tickrest.getData()
     // setInterval(function(parent) {
     //   console.log(parent.dataService.getRest());
     //   parent.isPreloaderHidden = parent.dataService.getRest();

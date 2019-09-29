@@ -5,4 +5,7 @@ export { StationView } from './models/station-view';
 export { StationTimeView } from './models/station-time-view';
 export { RestaurantView } from './models/restaurant-view';
 export { RestaurantViewIEnumerableResponse } from './models/restaurant-view-i-enumerable-response';
+export { ProductView } from './models/product-view';
+export { MenuView } from './models/menu-view';
+export { MenuViewIEnumerableResponse } from './models/menu-view-i-enumerable-response';
 export { TicketView } from './models/ticket-view';

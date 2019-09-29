@@ -2,7 +2,8 @@
 <div class="d-flex flex-wrap align-items-center justify-content-center f">
         <div class="col px-4 flex-fill mt-4" >
             
-            <h3 style="font-weight: 800;">Выберите станцию</h3>
+           <!--<h3 style="font-weight: 800;">Выберите станцию</h3>--> 
+           <h3 style="font-weight: 800;">Подтвердите заказ</h3>
             
         </div>
 
@@ -10,37 +11,24 @@
         <div class="d-flex flex-column mt-3 px-3">
 
                 <div class="card a-shadow border-0 mb-4">
-                        <div style="height:164px; overflow: hidden;"><img src="/assets/img/еда/{{data.img}}.jpg" class="card-img-top" alt="..."></div>
+                        <div style="height:164px; overflow: hidden;"><img src="{{data.imageUrl}}" class="card-img-top" alt="..."></div>
                             <div class="card-body py-3 px-3" style="position: relative">
                               
-                                <h5 style="font-weight: 800;">{{data.title}}</h5>
+                                <h5 style="font-weight: 800;">{{data.name}}</h5>
                     
-                                <div style="position: absolute; top:13px; right:16px;">
-                                    <span class="badge badge-danger timelabel">1 час 30 мин</span>
-                                </div>
-                                
+                                <div *ngFor="let itemdata of data.stationTime">
                                 <div class="mt-4">
                                     <div class="custom-control custom-radio my-1">
                                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio1">
-                                                <span class="badge badge-danger timelabel">1 ч 30 м</span> Волгоград
+                                                <span class="badge badge-danger timelabel">{{itemdata.time}}</span> Заказать набор <!--{{itemdata.station.name}}-->
                                             </label>
                                     </div>
-                                    <div class="custom-control custom-radio my-1">
-                                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio2">
-                                                <span class="badge badge-danger timelabel">1 ч 30 м</span>  Казахстан
-                                            </label>
-                                    </div>
-                                    <div class="custom-control custom-radio my-1">
-                                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio3">
-                                                <span class="badge badge-danger timelabel">1 ч 30 м</span>  Санкт-Петербург
-                                            </label>
                                     </div>
                                 </div>
 
-                                <button type="button" style="width:100%" class="btn btn-sm btn-danger mt-3">Подтвердить выбор</button>
+                               
+                                <button type="button" routerLink="/order-status"style="width:100%" class="btn btn-sm btn-danger mt-3">Подтвердить заказ</button>
 
                                 <p class="card-text"></p>
                         </div>
