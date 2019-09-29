@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScannerGuideComponent implements OnInit {
 
-  constructor() {   
+  constructor() { 
+    //if(!this.dataService.getUser().logged) {
+
+    //}
+  
   }
 
   ngOnInit() {

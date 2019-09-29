@@ -1,6 +1,6 @@
 <div style="position: relative">
 
-    <!--<app-preloader [isHidden]=".rest.status"></app-preloader>-->
+    <!-- <app-preloader [isHidden]="false"></app-preloader> -->
 
 
     <div class="d-flex flex-wrap align-items-center justify-content-center f">
@@ -12,6 +12,12 @@
 
             
             <div class="d-flex flex-column mt-3 px-3">
+
+                    <!-- <div *ngFor="let itemdata of testdata"> -->
+                    <div *ngFor="let itemdata of data">
+                        <app-list-rest-item [data]="itemdata"></app-list-rest-item>
+                       
+                    </div>
 
             </div>
     </div>

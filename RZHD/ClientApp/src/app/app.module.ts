@@ -16,6 +16,7 @@ import { ListRestComponent } from './list-rest/list-rest.component';
 import { ListRestItemComponent } from './list-rest-item/list-rest-item.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { ListRestStationsComponent } from './list-rest-stations/list-rest-stations.component';
+import { MenuRestComponent } from './menu-rest/menu-rest.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ListRestStationsComponent } from './list-rest-stations/list-rest-statio
     ListRestComponent,
     ListRestItemComponent,
     PreloaderComponent,
-    ListRestStationsComponent
+    ListRestStationsComponent,
+    MenuRestComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,12 +42,12 @@ import { ListRestStationsComponent } from './list-rest-stations/list-rest-statio
       {path: 'qr-scanner', component: ScannerComponent, data: {animation: 'ScannerPage'}},
       {path: 'manual-scanner', component: ManualScannerComponent, data: {animation: 'ManualScannerPage'}},
       {path: 'list-rest', component: ListRestComponent, data: {animation: 'ListRestPage'}},
-      {path: 'list-rest-stations', component: ListRestStationsComponent, data: {animation: 'ListRestStationsPage'}}
+      {path: 'list-rest-stations', component: ListRestStationsComponent, data: {animation: 'ListRestStationsPage'}},
+      {path: 'menu-rest', component: MenuRestComponent, data: {animation: 'MenuRestPage'}}
     ]),
     FormsModule,
     ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

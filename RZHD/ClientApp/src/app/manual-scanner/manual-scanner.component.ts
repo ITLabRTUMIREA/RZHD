@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
+import { SampleService } from '../sample.service';
 
+@NgModule({
+})
 
 @Component({
   selector: 'app-manual-scanner',
@@ -11,14 +14,20 @@ export class ManualScannerComponent implements OnInit {
 
   ticketNumber = "";
 
-  constructor(private router: Router) { }
+
+  constructor(
+    private sample: SampleService,
+    private router: Router) { }
 
   ngOnInit() {
-    
   }
-
   onConfirmBtnClick() {
-    this.router.navigate(['/list-rest']);
+    //this.dataService.loadRests(this.ticketNumber);
+    /*this.dataService.getRestaurantTicket(this.ticketNumber).subscribe(data => {
+      if (data.status) {
+        this.router.navigate(['/list-rest']);
+      }
+    });*/
   }
 
 }
