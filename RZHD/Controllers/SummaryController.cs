@@ -32,6 +32,12 @@ namespace RZHD.Controllers
             int columnNum = 0;
             titleRow.CreateCell(columnNum++).SetCellValue("Цена");
             titleRow.CreateCell(columnNum++).SetCellValue("Название продукта");
+            titleRow.CreateCell(columnNum++).SetCellValue("Название ресторана");
+            titleRow.CreateCell(columnNum++).SetCellValue("Номер билета");
+            titleRow.CreateCell(columnNum++).SetCellValue("Номер вагона в билете");
+            titleRow.CreateCell(columnNum++).SetCellValue("");
+            titleRow.CreateCell(columnNum++).SetCellValue("Назване станций");
+
 
             foreach (var prod in context.Products)
             {
@@ -39,6 +45,22 @@ namespace RZHD.Controllers
                 var row = summaryTableSheet.CreateRow(rowNum++);
                 row.CreateCell(colNum++).SetCellValue(prod.Price);
                 row.CreateCell(colNum++).SetCellValue(prod.Name);
+                foreach (var rest in context.Restaurants)
+                {
+                    row.CreateCell(colNum++).SetCellValue(rest.Name);
+                    //row.CreateCell(colNum++).SetCellValue();
+                }
+                foreach (var tick in context.Tickets)
+                {
+                    row.CreateCell(colNum++).SetCellValue(tick.Number);
+                    row.CreateCell(colNum++).SetCellValue(tick.WagonNumber);
+                }
+                row.CreateCell(colNum++).SetCellValue("");
+
+                foreach (var station in context.Stations)
+                {
+                    row.CreateCell(colNum++).SetCellValue(station.Name);
+                }
             }
 
             var fileName = Path.GetTempFileName();
