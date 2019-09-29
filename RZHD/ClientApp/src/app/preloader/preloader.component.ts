@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-preloader',
@@ -10,7 +9,7 @@ export class PreloaderComponent implements OnInit {
 
   @Input() isHidden: boolean ;
 
-  constructor(private dataService : DataService) { }
+  constructor() { }
 
   ngOnInit() {
 
