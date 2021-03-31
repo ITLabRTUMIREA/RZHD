@@ -55,7 +55,7 @@ import { RestappMainComponent } from './restapp-main/restapp-main.component';
       {path: 'rest/main', component: RestappMainComponent, data: {animation: 'RestappMainPage'}},
     ]),
     FormsModule,
-    ApiModule.forRoot({ rootUrl: "https://rzhd.rtuitlab.ru"})
+    ApiModule.forRoot({ rootUrl: "http://localhost:5000"})
   ],
   bootstrap: [AppComponent]
 })
