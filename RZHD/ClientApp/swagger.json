@@ -1,0 +1,601 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "My API",
+      "version": "v1"
+    },
+    "paths": {
+      "/api/auth/register": {
+        "post": {
+          "tags": [
+            "Authentication"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/auth/login": {
+        "post": {
+          "tags": [
+            "Authentication"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequest"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LoginView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/restaurant/{ticket}": {
+        "get": {
+          "tags": [
+            "Restaurant"
+          ],
+          "parameters": [
+            {
+              "name": "ticket",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RestaurantViewIEnumerableResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/restaurant/{restId}": {
+        "get": {
+          "tags": [
+            "Restaurant"
+          ],
+          "parameters": [
+            {
+              "name": "restId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuViewIEnumerableResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/restaurant/admin": {
+        "post": {
+          "tags": [
+            "Restaurant"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrderRequest"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrderRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrderRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrderRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Int32Response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/restaurant/adimn/{orderId}": {
+        "get": {
+          "tags": [
+            "Restaurant"
+          ],
+          "parameters": [
+            {
+              "name": "orderId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrderViewResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/summary": {
+        "get": {
+          "tags": [
+            "Summary"
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/ticket": {
+        "get": {
+          "tags": [
+            "Ticket"
+          ],
+          "parameters": [
+            {
+              "name": "ticket",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/TicketView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "RegisterRequest": {
+          "required": [
+            "age",
+            "email",
+            "firstname",
+            "middlename",
+            "password",
+            "secondname"
+          ],
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string",
+              "nullable": true
+            },
+            "secondname": {
+              "type": "string",
+              "nullable": true
+            },
+            "middlename": {
+              "type": "string",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "LoginRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "LoginView": {
+          "type": "object",
+          "properties": {
+            "accessToken": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "StationView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "StationTimeView": {
+          "type": "object",
+          "properties": {
+            "station": {
+              "$ref": "#/components/schemas/StationView"
+            },
+            "time": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "RestaurantView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "imageUrl": {
+              "type": "string",
+              "nullable": true
+            },
+            "stationTime": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StationTimeView"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "RestaurantViewIEnumerableResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "boolean"
+            },
+            "error": {
+              "type": "string",
+              "nullable": true
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RestaurantView"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ProductView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "imageUrl": {
+              "type": "string",
+              "nullable": true
+            },
+            "price": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "MenuView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true
+            },
+            "products": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProductView"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "MenuViewIEnumerableResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "boolean"
+            },
+            "error": {
+              "type": "string",
+              "nullable": true
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/MenuView"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "CreateOrderRequest": {
+          "type": "object",
+          "properties": {
+            "totalPrice": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "productsId": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "nullable": true
+            },
+            "restaurantsId": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "nullable": true
+            },
+            "stationsId": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "Int32Response": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "boolean"
+            },
+            "error": {
+              "type": "string",
+              "nullable": true
+            },
+            "content": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Status": {
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "status": {
+              "$ref": "#/components/schemas/Status"
+            },
+            "totalPrice": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "products": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProductView"
+              },
+              "nullable": true
+            },
+            "stations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StationView"
+              },
+              "nullable": true
+            },
+            "restaurants": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RestaurantView"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "OrderViewResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "boolean"
+            },
+            "error": {
+              "type": "string",
+              "nullable": true
+            },
+            "content": {
+              "$ref": "#/components/schemas/OrderView"
+            }
+          },
+          "additionalProperties": false
+        },
+        "TicketView": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "number": {
+              "type": "string",
+              "nullable": true
+            },
+            "departureTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "arriveTime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
